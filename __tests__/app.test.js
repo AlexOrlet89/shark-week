@@ -21,7 +21,7 @@ describe('backend-express-template routes', () => {
       },
     ]);
   });
-  it.only('POST /sharks should create a new shark', async () => {
+  it('POST /sharks should create a new shark', async () => {
     const resp = await request(app).post('/sharks').send({
       id: '2',
       scientific_name: 'Otodus megalodon',
@@ -41,7 +41,7 @@ describe('backend-express-template routes', () => {
   });
 
   it('test to render shark by id', async () => {
-    const resp = await require(app).get('/sharks/1');
+    const resp = await request(app).get('/sharks/1');
     expect(resp.status).toEqual(200);
     expect(resp.body).toEqual({
       id: '1',
