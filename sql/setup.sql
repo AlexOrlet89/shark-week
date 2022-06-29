@@ -17,3 +17,6 @@ CREATE TABLE sharks (
 --     email TEXT NOT NULL,
 --     password_hash TEXT NOT NULL
 --     );
+
+INSERT INTO sharks (scientific_name, family, kingdom, living, random_fact) VALUES
+('Baby Shark', 'Everyone', 'Philodendron', 'yes', 'doot dooot doot');
