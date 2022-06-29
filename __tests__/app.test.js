@@ -21,6 +21,24 @@ describe('backend-express-template routes', () => {
       },
     ]);
   });
+  it.only('POST /sharks should create a new shark', async () => {
+    const resp = await request(app).post('/sharks').send({
+      id: '2',
+      scientific_name: 'Otodus megalodon',
+      family: 'Otodontidae',
+      kingdom: 'Animal',
+      living: 'extinct',
+      random_fact: 'big tooth',
+    });
+    console.log(resp.body);
+    expect(resp.status).toEqual(200);
+    expect(resp.body.scientific_name).toEqual('Otodus megalodon');
+    expect(resp.body.family).toEqual('Otodontidae');
+    expect(resp.body.kingdom).toEqual('Animal');
+    expect(resp.body.living).toEqual('extinct');
+    expect(resp.body.random_fact).toEqual('big tooth');
+    expect(resp.body.id).not.toBeUndefined();
+  });
   afterAll(() => {
     pool.end();
   });
