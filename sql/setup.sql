@@ -8,8 +8,7 @@ CREATE TABLE sharks (
     family TEXT NOT NULL,
     kingdom TEXT NOT NULL,
     living TEXT NOT NULL,
-    random_fact TEEXT NOT NULL,
-
+    random_fact TEXT NOT NULL
     );
 -- CREATE TABLE userss (
 --     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
