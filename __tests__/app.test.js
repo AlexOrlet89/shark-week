@@ -39,6 +39,19 @@ describe('backend-express-template routes', () => {
     expect(resp.body.random_fact).toEqual('big tooth');
     expect(resp.body.id).not.toBeUndefined();
   });
+
+  it('test to render shark by id', async () => {
+    const resp = await require(app).get('/sharks/1');
+    expect(resp.status).toEqual(200);
+    expect(resp.body).toEqual({
+      id: '1',
+      scientific_name: 'Baby Shark',
+      family: 'Everyone',
+      kingdom: 'Philodendron',
+      living: 'yes',
+      random_fact: 'doot dooot doot',
+    });
+  });
   afterAll(() => {
     pool.end();
   });
