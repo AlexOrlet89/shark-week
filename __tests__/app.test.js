@@ -2,6 +2,7 @@ const pool = require('../lib/utils/pool');
 const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
+const Shark = require('../lib/models/Shark');
 
 describe('backend-express-template routes', () => {
   beforeEach(() => {
@@ -59,6 +60,23 @@ describe('backend-express-template routes', () => {
     console.log(resp.body);
     expect(resp.status).toEqual(200);
     expect(resp.body.scientific_name).toEqual('Bullseye');
+  });
+
+  it('DELETE /api/v1/items/:id should delete items for valid user', async () => {
+    // const [agent, user] = await registerAndLogin();
+    const item = await Shark.insert({
+      // id: '2',
+      scientific_name: 'Baby Shark',
+      family: 'Everyone',
+      kingdom: 'Philodendron',
+      living: 'yes',
+      random_fact: 'doot dooot doot',
+    });
+    const resp = await request.agent(app).delete(`/sharks/2`);
+    expect(resp.status).toBe(200);
+
+    const check = await Shark.getById(item.id);
+    expect(check).toBeNull();
   });
   afterAll(() => {
     pool.end();
