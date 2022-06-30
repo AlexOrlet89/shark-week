@@ -4,12 +4,13 @@ const request = require('supertest');
 const app = require('../lib/app');
 const Shark = require('../lib/models/Shark');
 
+
 const mockUser = {
   email: 'Brenden@gmail.com',
   password: '12345',
 };
 
-describe('backend-express-template routes', () => {
+describe('sharks routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
@@ -84,9 +85,10 @@ describe('backend-express-template routes', () => {
     expect(check).toBeNull();
   });
 
-  it('creates a new user', async () => {
+  it.only('creates a new user', async () => {
     const res = await request(app).post('/api/v1/users').send(mockUser);
     const { email } = mockUser;
+    console.log(res.body);
 
     expect(res.body).toEqual({
       id: expect.any(String),
