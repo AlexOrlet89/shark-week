@@ -52,6 +52,14 @@ describe('backend-express-template routes', () => {
       random_fact: 'doot dooot doot',
     });
   });
+  it('PUT /sharks/:id should return a new Shark', async () => {
+    const resp = await request(app).put('/sharks/1').send({
+      scientific_name: 'Bullseye',
+    });
+    console.log(resp.body);
+    expect(resp.status).toEqual(200);
+    expect(resp.body.scientific_name).toEqual('Bullseye');
+  });
   afterAll(() => {
     pool.end();
   });
